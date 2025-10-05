@@ -1,5 +1,7 @@
-package hu.unideb.cartshare.exception;
+package hu.unideb.cartshare.exception.handler;
 
+import hu.unideb.cartshare.dto.ApiErrorDto;
+import hu.unideb.cartshare.exception.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -23,5 +25,12 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    @ExceptionHandler(
+            EntityNotFoundException.class
+    )
+    public ResponseEntity<ApiErrorDto> handleEntityNotFoundException(EntityNotFoundException exc) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiErrorDto.builder().message(exc.getMessage()).build());
     }
 }
