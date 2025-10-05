@@ -20,7 +20,6 @@ public class ListDto {
     @NotEmpty(message = "Kitöltése kötelező")
     private String name;
 
-    @NotEmpty(message = "Kitöltése kötelező")
     private List<ListItemDto> items;
 
 }
