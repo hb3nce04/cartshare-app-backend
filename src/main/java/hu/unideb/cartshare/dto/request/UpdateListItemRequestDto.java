@@ -1,24 +1,21 @@
-package hu.unideb.cartshare.dto;
+package hu.unideb.cartshare.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
-public class ListItemDto {
-    @JsonProperty(
-            access = JsonProperty.Access.READ_ONLY
-    )
-    private String id;
-
+public class UpdateListItemRequestDto {
     @NotEmpty(message = "Kitöltése kötelező")
     private String name;
 
     @NotNull(message = "Kitöltése kötelező")
-    private Boolean isChecked;
+    @Positive
+    private Integer quantity = 1;
+
+    @NotNull(message = "Kitöltése kötelező")
+    private Boolean isChecked = false;
 }
