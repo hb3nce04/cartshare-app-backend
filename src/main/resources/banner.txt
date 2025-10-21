@@ -1,0 +1,2 @@
+cartshare-app-backend
+Powered by Spring Boot v${spring-boot.version}

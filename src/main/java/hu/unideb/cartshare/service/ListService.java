@@ -1,55 +1,25 @@
 package hu.unideb.cartshare.service;
 
-import hu.unideb.cartshare.dto.ListDto;
-import hu.unideb.cartshare.dto.ListItemDto;
-import hu.unideb.cartshare.exception.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import hu.unideb.cartshare.dto.response.ListResponseDto;
+import hu.unideb.cartshare.mapper.ListMapper;
+import hu.unideb.cartshare.repository.ListRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class ListService {
-    private final List<ListDto> list = new ArrayList<>(List.of(
-            ListDto.builder().id("1").name("list1").items(
-                    List.of(
-                            ListItemDto.builder().id("1").name("todo1").isChecked(false).build()
-                    )
-            ).build()
-    ));
+    private final ListRepository repository;
+    private final ListMapper mapper;
 
-    public ListDto create(ListDto listDto) {
-        listDto.setId(String.valueOf(list.size() + 1));
-        listDto.setItems(new ArrayList<>());
-        list.add(listDto);
-        return listDto;
-    }
+    private static final UUID USER_ID = UUID.fromString("6556437c-2a30-4e10-bfee-7239c5fc9e12");
 
-    public List<ListDto> findAll() {
-        return list;
-    }
-
-    public ListDto findById(String id) {
-        return list.stream().filter(l -> l.getId().equals(id)).findFirst().orElseThrow(() -> new EntityNotFoundException(
-                String.format("Az adott entitás (id: %s) nem található!", id)
-        ));
-    }
-
-    public Void deleteById(String id) {
-        ListDto foundListDto = findById(id);
-        list.remove(foundListDto);
-        return null;
-    }
-
-    public ListDto updateById(
-            String id,
-            ListDto listDto) {
-        ListDto foundListDto = findById(id);
-        foundListDto.setName(listDto.getName());
-        foundListDto.setItems(listDto.getItems());
-        list.set(list.indexOf(foundListDto), foundListDto);
-        return foundListDto;
+    public List<ListResponseDto> findAll() {
+        System.out.println(repository.findAllByUser_Id(USER_ID));
+        return mapper.toDto(repository.findAllByUser_Id(USER_ID));
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import hu.unideb.cartshare.dto.ApiErrorDto;
+import hu.unideb.cartshare.dto.response.ApiErrorResponseDto;
 import hu.unideb.cartshare.exception.EntityNotFoundException;
 
 @RestControllerAdvice
@@ -28,12 +28,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ApiErrorDto> handleEntityNotFoundException(EntityNotFoundException exc) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiErrorDto.builder().message(exc.getMessage()).build());
+    public ResponseEntity<ApiErrorResponseDto> handleEntityNotFoundException(EntityNotFoundException exc) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiErrorResponseDto.builder().message(exc.getMessage()).build());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ApiErrorDto> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exc) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiErrorDto.builder().message("Az adott kérés nem támogatott!").build());
+    public ResponseEntity<ApiErrorResponseDto> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiErrorResponseDto.builder().message("Az adott kérés nem támogatott!").build());
     }
 }
