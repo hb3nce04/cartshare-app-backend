@@ -1,0 +1,11 @@
+name: cartshare-app
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: postgres
