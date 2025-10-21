@@ -17,5 +17,8 @@ public class CreateListItemRequestDto {
     private Integer quantity = 1;
 
     @NotEmpty(message = "Kitöltése kötelező")
+    private String unit;
+
+    @NotEmpty(message = "Kitöltése kötelező")
     private String listId;
 }

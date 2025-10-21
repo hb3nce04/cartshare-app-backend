@@ -16,6 +16,9 @@ public class UpdateListItemRequestDto {
     @Positive
     private Integer quantity = 1;
 
+    @NotEmpty(message = "Kitöltése kötelező")
+    private String unit;
+
     @NotNull(message = "Kitöltése kötelező")
     private Boolean isChecked = false;
 }

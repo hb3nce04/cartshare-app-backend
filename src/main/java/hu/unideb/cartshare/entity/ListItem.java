@@ -10,13 +10,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "list_items")
 public class ListItem extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private Integer quantity = 1;
+
+    @Column(nullable = false)
+    private String unit;
 
     @Column(nullable = false)
     private Boolean isChecked = false;

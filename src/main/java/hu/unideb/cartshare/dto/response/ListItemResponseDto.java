@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class ListItemResponseDto {
     private String id;
+    private Integer quantity;
+    private String unit;
     private String name;
     private Boolean isChecked;
 }
