@@ -15,5 +15,12 @@ public interface UserListMembershipRepository extends BaseRepository<UserListMem
             UUID userId,
             UserListRole role);
 
-    UserListRole Role(UserListRole role);
+    boolean existsByListAndUser_IdAndRoleIs(
+            hu.unideb.cartshare.model.entity.List list,
+            UUID user_id,
+            UserListRole role);
+
+    void deleteByListAndUser_Id(
+            hu.unideb.cartshare.model.entity.List list,
+            UUID userId);
 }
