@@ -1,6 +1,6 @@
-package hu.unideb.cartshare.entity;
+package hu.unideb.cartshare.model.entity;
 
-import hu.unideb.cartshare.entity.common.BaseEntity;
+import hu.unideb.cartshare.model.entity.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

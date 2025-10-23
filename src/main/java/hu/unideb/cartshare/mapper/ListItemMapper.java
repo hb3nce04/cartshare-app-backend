@@ -4,8 +4,8 @@ import java.util.Set;
 
 import org.mapstruct.Mapper;
 
-import hu.unideb.cartshare.dto.response.ListItemResponseDto;
-import hu.unideb.cartshare.entity.ListItem;
+import hu.unideb.cartshare.model.dto.response.ListItemResponseDto;
+import hu.unideb.cartshare.model.entity.ListItem;
 
 @Mapper(componentModel = "spring")
 public interface ListItemMapper {

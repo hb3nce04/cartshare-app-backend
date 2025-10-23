@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import hu.unideb.cartshare.dto.response.ApiErrorResponseDto;
+import hu.unideb.cartshare.model.dto.response.ApiErrorResponseDto;
 import hu.unideb.cartshare.exception.EntityNotFoundException;
 
 @RestControllerAdvice

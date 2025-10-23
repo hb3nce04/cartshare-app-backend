@@ -1,4 +1,4 @@
-package hu.unideb.cartshare.dto.request;
+package hu.unideb.cartshare.model.dto.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

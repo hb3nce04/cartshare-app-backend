@@ -1,4 +1,4 @@
-package hu.unideb.cartshare.dto.response;
+package hu.unideb.cartshare.model.dto.response;
 
 import java.util.Set;
 
