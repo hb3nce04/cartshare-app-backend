@@ -14,7 +14,7 @@ public class UpdateListItemRequestDto {
 
     @NotNull(message = "Kitöltése kötelező")
     @Positive
-    private Integer quantity = 1;
+    private Double quantity = 1.0;
 
     @NotEmpty(message = "Kitöltése kötelező")
     private String unit;

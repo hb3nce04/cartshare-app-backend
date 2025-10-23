@@ -55,8 +55,8 @@ public class ListController {
         return ResponseEntity.ok(service.leaveById(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestBody @Validated UUID id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable @Validated UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

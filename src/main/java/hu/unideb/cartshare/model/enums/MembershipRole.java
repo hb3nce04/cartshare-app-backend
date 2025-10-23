@@ -1,5 +1,5 @@
 package hu.unideb.cartshare.model.enums;
 
-public enum UserListRole {
+public enum MembershipRole {
     OWNER, MEMBER
 }
