@@ -16,6 +16,6 @@ public class UserRequestDto {
     private String email;
 
     @NotEmpty(message = "Kitöltése kötelező")
-    @Pattern(regexp = "^(?=.[a-z])(?=.[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Helytelen formátum")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Helytelen formátum")
     private String password;
 }
