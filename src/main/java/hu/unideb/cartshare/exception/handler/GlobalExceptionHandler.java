@@ -11,7 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import hu.unideb.cartshare.dto.response.ApiErrorResponseDto;
+import hu.unideb.cartshare.exception.BusinessLogicException;
+import hu.unideb.cartshare.model.dto.response.ApiErrorResponseDto;
 import hu.unideb.cartshare.exception.EntityNotFoundException;
 
 @RestControllerAdvice
@@ -30,6 +31,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ApiErrorResponseDto> handleEntityNotFoundException(EntityNotFoundException exc) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiErrorResponseDto.builder().message(exc.getMessage()).build());
+    }
+
+    @ExceptionHandler(BusinessLogicException.class)
+    public ResponseEntity<ApiErrorResponseDto> handleBusinessLogicException(BusinessLogicException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiErrorResponseDto.builder().message(exc.getMessage()).build());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

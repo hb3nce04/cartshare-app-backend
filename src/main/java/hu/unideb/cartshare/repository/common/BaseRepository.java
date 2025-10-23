@@ -1,10 +1,12 @@
 package hu.unideb.cartshare.repository.common;
 
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import hu.unideb.cartshare.entity.common.BaseEntity;
+import hu.unideb.cartshare.model.entity.common.BaseEntity;
 
 @NoRepositoryBean
-public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, String> {
+public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, UUID> {
 }
