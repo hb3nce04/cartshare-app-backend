@@ -6,10 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TraditionalLoginRequestDto {
+public class RefreshTokenRequestDto {
     @NotEmpty(message = "Kitöltése kötelező")
-    private String username;
-
-    @NotEmpty(message = "Kitöltése kötelező")
-    private String password;
+    private String refreshToken;
 }
