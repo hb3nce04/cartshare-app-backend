@@ -33,9 +33,11 @@ public class ListItemService {
             listItem.setList(foundList);
 
             repository.save(listItem);
+
+            return mapper.toDto(listItem);
         }
 
-        return mapper.toDto(listItem);
+        return null;
     }
 
     public ListItemResponseDto update(
@@ -51,9 +53,11 @@ public class ListItemService {
             foundListItem.setIsChecked(dto.getIsChecked());
 
             repository.save(foundListItem);
+
+            return mapper.toDto(foundListItem);
         }
 
-        return mapper.toDto(foundListItem);
+        return null;
     }
 
     public void delete(UUID id) {

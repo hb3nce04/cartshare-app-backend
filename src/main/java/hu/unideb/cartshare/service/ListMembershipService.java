@@ -3,10 +3,13 @@ package hu.unideb.cartshare.service;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import hu.unideb.cartshare.exception.BusinessLogicException;
 import hu.unideb.cartshare.model.entity.ListMembership;
+import hu.unideb.cartshare.model.entity.UserDetailsImpl;
 import hu.unideb.cartshare.model.enums.MembershipRole;
 import hu.unideb.cartshare.repository.ListMembershipRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +31,7 @@ public class ListMembershipService {
     public void join(
             hu.unideb.cartshare.model.entity.List list,
             MembershipRole role) {
-        if (!isOwner(list) && !isMember(list)) {
+        if (hasNoMembershipInList(list)) {
             ListMembership membership = new ListMembership();
             // TODO: joinedAt ?
             membership.setList(list);
@@ -72,14 +75,33 @@ public class ListMembershipService {
             throw new BusinessLogicException(
                     requiredRole == null
                             ? "Nem vagy bennne a listában!"
-                            : "Nem vagy a tulajdonosa a listának!"
+                            : "Nem a " + (requiredRole == MembershipRole.OWNER ? "tulajdonosa" : "tagja") + " vagy a listának!"
             );
         }
 
         return true;
     }
 
+    private boolean hasNoMembershipInList(hu.unideb.cartshare.model.entity.List list) {
+        UUID userId = getCurrentUserId();
+        boolean exists = repository.existsByListAndUserId(list, userId);
+
+        if (exists) {
+            throw new BusinessLogicException("Már benne vagy a listában!");
+        }
+
+        return true;
+    }
+
     private UUID getCurrentUserId() {
-        return UUID.fromString("6556437c-2a30-4e10-bfee-7239c5fc9e12");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new BusinessLogicException("Nem sikerült a felhasználó azonosítása!");
+        }
+
+        UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();
+
+        return principal.getId();
     }
 }
