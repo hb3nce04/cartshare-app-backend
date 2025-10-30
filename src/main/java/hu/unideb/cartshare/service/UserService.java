@@ -10,6 +10,7 @@ import hu.unideb.cartshare.mapper.UserMapper;
 import hu.unideb.cartshare.model.dto.request.UserRequestDto;
 import hu.unideb.cartshare.model.dto.response.UserResponseDto;
 import hu.unideb.cartshare.model.entity.User;
+import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +21,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper mapper;
 
-    public UserResponseDto create(UserRequestDto dto) {
+    public UserResponseDto createLocalUser(UserRequestDto dto) {
         if (repository.existsByUsername(dto.getUsername())) {
             throw new BusinessLogicException("Ez a felhasználónév már foglalt!");
         }
@@ -34,10 +35,24 @@ public class UserService {
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setPassword(encodedPassword);
+        user.setProvider(AuthProvider.LOCAL);
 
         repository.save(user);
 
         return mapper.toDto(user);
+    }
+
+    public User findOrCreateGoogleUser(String email, String username, String googleId) {
+        return repository.findByEmail(email).orElseGet(
+                () -> {
+                    User newUser = new User();
+                    newUser.setUsername(username);
+                    newUser.setEmail(email);
+                    newUser.setProvider(AuthProvider.GOOGLE);
+                    newUser.setProviderId(googleId);
+                    return repository.save(newUser);
+                }
+        );
     }
 
     public User findById(UUID id) {

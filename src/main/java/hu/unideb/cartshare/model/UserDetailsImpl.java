@@ -1,4 +1,4 @@
-package hu.unideb.cartshare.model.entity;
+package hu.unideb.cartshare.model;
 
 import java.util.Collection;
 import java.util.UUID;
