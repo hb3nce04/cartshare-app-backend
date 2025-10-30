@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import hu.unideb.cartshare.exception.BusinessLogicException;
 import hu.unideb.cartshare.model.entity.ListMembership;
-import hu.unideb.cartshare.model.entity.UserDetailsImpl;
+import hu.unideb.cartshare.model.UserDetailsImpl;
 import hu.unideb.cartshare.model.enums.MembershipRole;
 import hu.unideb.cartshare.repository.ListMembershipRepository;
 import lombok.RequiredArgsConstructor;

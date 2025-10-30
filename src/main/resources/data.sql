@@ -1,7 +1,7 @@
-INSERT INTO users (id, username, password, email)
+INSERT INTO users (id, username, password, provider, email)
 VALUES
-    ('6556437c-2a30-4e10-bfee-7239c5fc9e12', 'teszt', '$2a$10$46v7LgzwgYlUbP8gtoSJD.DfGtVM90ZBtPR4cqfKQdALhbsgeLZ3G', 'teszt@teszt.com'),
-    ('d25adc80-646c-46e9-920e-f086dfd55954', 'teszt2', '$2a$10$46v7LgzwgYlUbP8gtoSJD.DfGtVM90ZBtPR4cqfKQdALhbsgeLZ3G', 'teszt2@teszt.com');
+    ('6556437c-2a30-4e10-bfee-7239c5fc9e12', 'teszt', '$2a$10$46v7LgzwgYlUbP8gtoSJD.DfGtVM90ZBtPR4cqfKQdALhbsgeLZ3G', 'LOCAL', 'teszt@teszt.com'),
+    ('d25adc80-646c-46e9-920e-f086dfd55954', 'teszt2', '$2a$10$46v7LgzwgYlUbP8gtoSJD.DfGtVM90ZBtPR4cqfKQdALhbsgeLZ3G', 'LOCAL', 'teszt2@teszt.com');
 
 INSERT INTO lists (id, name)
 VALUES
