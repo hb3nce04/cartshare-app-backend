@@ -1,4 +1,4 @@
 # cartshare-app-backend
 
 ## Adatbázis-séma
-![ER](https://github.com/hosozso/cartshare-app-backend/blob/main/docs/er.png?raw=true)
+![ER](https://github.com/hb3nce04/cartshare-app-backend/blob/main/docs/er.png?raw=true)
