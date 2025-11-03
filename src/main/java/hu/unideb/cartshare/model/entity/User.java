@@ -9,6 +9,9 @@ import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Spring Data JPA user entity with a table name: users.
+ */
 @Getter
 @Setter
 @Entity(name = "users")

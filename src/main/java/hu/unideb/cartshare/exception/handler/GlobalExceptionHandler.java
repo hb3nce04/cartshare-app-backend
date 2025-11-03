@@ -15,6 +15,9 @@ import hu.unideb.cartshare.exception.BusinessLogicException;
 import hu.unideb.cartshare.model.dto.response.ApiErrorResponseDto;
 import hu.unideb.cartshare.exception.EntityNotFoundException;
 
+/**
+ * It centralizes the error handling logic with unified error responses.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)

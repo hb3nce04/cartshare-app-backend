@@ -8,6 +8,9 @@ import hu.unideb.cartshare.model.entity.User;
 import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.common.BaseRepository;
 
+/**
+ * Repository interface for {@link hu.unideb.cartshare.model.entity.User}.
+ */
 @Repository
 public interface UserRepository extends BaseRepository<User> {
     boolean existsByUsername(String username);

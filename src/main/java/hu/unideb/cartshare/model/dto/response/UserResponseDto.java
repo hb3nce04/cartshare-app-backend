@@ -4,6 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO for user registration.
+ */
 @Getter
 @Setter
 @Builder

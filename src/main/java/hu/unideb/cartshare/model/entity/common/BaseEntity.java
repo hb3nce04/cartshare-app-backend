@@ -8,6 +8,9 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Reuses Spring Data JPA entity's commonly used fields e.g. id.
+ */
 @Getter
 @Setter
 @MappedSuperclass

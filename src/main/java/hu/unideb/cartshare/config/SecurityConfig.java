@@ -16,6 +16,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import hu.unideb.cartshare.component.JwtFilter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Configuration class for Spring Security.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {

@@ -14,12 +14,22 @@ import com.google.api.client.json.gson.GsonFactory;
 import hu.unideb.cartshare.exception.BusinessLogicException;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Handles Google OAuth2 authentication logic. (Token verification)
+ */
 @Service
 @RequiredArgsConstructor
 public class GoogleAuthService {
     @Value("${google.client.id}")
     private String CLIENT_ID;
 
+    /**
+     * Verifies the Google-based / signed token.
+     * @param token token from Google
+     * @return {@link GoogleIdToken.Payload} payload
+     * @throws GeneralSecurityException N/A
+     * @throws IOException N/A
+     */
     public GoogleIdToken.Payload verifyToken(String token) throws GeneralSecurityException, IOException {
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                 new NetHttpTransport(),

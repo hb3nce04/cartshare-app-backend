@@ -18,10 +18,20 @@ import hu.unideb.cartshare.model.dto.request.TraditionalLoginRequestDto;
 import hu.unideb.cartshare.model.dto.request.UserRequestDto;
 import hu.unideb.cartshare.model.dto.response.LoginResponseDto;
 import hu.unideb.cartshare.model.dto.response.UserResponseDto;
-import hu.unideb.cartshare.service.UserService;
+import hu.unideb.cartshare.service.user.UserService;
 import hu.unideb.cartshare.service.auth.AuthService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * For user authentication endpoints.
+ * It handles:
+ * <ul>
+ *     <li>User registration</li>
+ *     <li>Traditional login</li>
+ *     <li>Google OAuth login</li>
+ *     <li>Getting an access token with a valid refresh token</li>
+ *  </ul>
+ */
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

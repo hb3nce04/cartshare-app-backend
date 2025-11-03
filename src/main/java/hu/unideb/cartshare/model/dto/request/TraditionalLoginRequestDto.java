@@ -5,6 +5,9 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for authenticating traditionally.
+ */
 @Getter
 @Setter
 public class TraditionalLoginRequestDto {
