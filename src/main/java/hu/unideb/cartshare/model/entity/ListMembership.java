@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Spring Data JPA list - user membership entity with a table name: user_list_memberships.
+ */
 @Getter
 @Setter
 @Entity(name = "user_list_memberships")

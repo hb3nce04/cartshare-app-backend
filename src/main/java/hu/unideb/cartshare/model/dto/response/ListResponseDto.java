@@ -6,6 +6,9 @@ import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO for getting lists.
+ */
 @Getter
 @Setter
 public class ListResponseDto {

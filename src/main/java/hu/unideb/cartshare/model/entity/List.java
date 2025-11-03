@@ -8,6 +8,9 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Spring Data JPA list entity with table name: lists.
+ */
 @Getter
 @Setter
 @Entity(name = "lists")

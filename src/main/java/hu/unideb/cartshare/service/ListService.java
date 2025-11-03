@@ -15,6 +15,9 @@ import hu.unideb.cartshare.model.enums.MembershipRole;
 import hu.unideb.cartshare.repository.ListRepository;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Handles list management business logic.
+ */
 @Service
 @RequiredArgsConstructor
 public class ListService {
@@ -23,18 +26,31 @@ public class ListService {
 
     private final ListMembershipService listMembershipService;
 
+    /**
+     * Finding all lists where the currently authenticated user is an OWNER.
+     * @return {@link List} of {@link ListResponseDto}
+     */
     public List<ListResponseDto> findAllOwnedLists() {
         return mapper.toDtoList(
                 listMembershipService.findAllOwnership().stream().map(ListMembership::getList)
                         .toList());
     }
 
+    /**
+     * Finding all lists where the currently authenticated user is only a MEMBER.
+     * @return {@link List} of {@link ListResponseDto}
+     */
     public List<ListResponseDto> findAllAllJoinedLists() {
         return mapper.toDtoList(
                 listMembershipService.findAllMembership().stream().map(ListMembership::getList)
                         .toList());
     }
 
+    /**
+     * Creates a new list in the DB as an OWNER.
+     * @param dto {@link ListRequestDto} request DTO
+     * @return {@link ListResponseDto} response DTO
+     */
     public ListResponseDto create(ListRequestDto dto) {
         hu.unideb.cartshare.model.entity.List list = new hu.unideb.cartshare.model.entity.List();
         list.setName(dto.getName());
@@ -45,6 +61,11 @@ public class ListService {
         return mapper.toDto(list);
     }
 
+    /**
+     * Joining to a specific list as a MEMBER.
+     * @param id {@link java.util.UUID} id
+     * @return {@link ListResponseDto} response DTO
+     */
     public ListResponseDto joinById(UUID id) {
         hu.unideb.cartshare.model.entity.List foundList = findById(id);
 
@@ -53,6 +74,11 @@ public class ListService {
         return mapper.toDto(foundList);
     }
 
+    /**
+     * Updates a specific list from the DB as a MEMBER.
+     * @param id {@link java.util.UUID} id
+     * @param dto {@link ListRequestDto} request DTO
+     */
     public ListResponseDto update(
             UUID id,
             ListRequestDto dto) {
@@ -67,6 +93,10 @@ public class ListService {
         return mapper.toDto(foundList);
     }
 
+    /**
+     * Deletes a specific entry from the DB. (ListMembership M:N table)
+     * @param id {@link java.util.UUID} id
+     */
     public ListResponseDto leaveById(UUID id) {
         hu.unideb.cartshare.model.entity.List foundList = findById(id);
 
@@ -75,6 +105,10 @@ public class ListService {
         return mapper.toDto(foundList);
     }
 
+    /**
+     * Deletes a specific list from the DB as a MEMBER.
+     * @param id {@link java.util.UUID} id
+     */
     public void delete(UUID id) {
         hu.unideb.cartshare.model.entity.List foundList = findById(id);
 
@@ -83,10 +117,20 @@ public class ListService {
         }
     }
 
+    /**
+     * Finds the list in the DB by UUID.
+     * @param id {@link java.util.UUID} id
+     * @return {@link hu.unideb.cartshare.model.entity.List} list entity
+     */
     public hu.unideb.cartshare.model.entity.List findById(UUID id) {
         return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a lista nem létezik!"));
     }
 
+    /**
+     * Finds the list in the DB by list item inside.
+     * @param item {@link ListItem} list item
+     * @return {@link hu.unideb.cartshare.model.entity.List} list entity
+     */
     public hu.unideb.cartshare.model.entity.List findByItem(ListItem item) {
         return repository.findByItemsContaining(item).orElseThrow(() -> new BusinessLogicException("Ehhez az elemhez nem tartozik lista!"));
     }

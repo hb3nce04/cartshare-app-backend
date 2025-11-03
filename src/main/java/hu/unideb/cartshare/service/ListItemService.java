@@ -13,6 +13,9 @@ import hu.unideb.cartshare.model.entity.ListItem;
 import hu.unideb.cartshare.repository.ListItemRepository;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Handles list item management business logic.
+ */
 @Service
 @RequiredArgsConstructor
 public class ListItemService {
@@ -22,6 +25,11 @@ public class ListItemService {
     private final ListMembershipService listMembershipService;
     private final ListService listService;
 
+    /**
+     * Creates a new list item in the DB as a MEMBER or an OWNER.
+     * @param dto {@link hu.unideb.cartshare.model.dto.request.CreateListItemRequestDto} request DTO
+     * @return {@link hu.unideb.cartshare.model.dto.response.ListItemResponseDto} response DTO
+     */
     public ListItemResponseDto create(CreateListItemRequestDto dto) {
         hu.unideb.cartshare.model.entity.List foundList = listService.findById(UUID.fromString(dto.getListId()));
 
@@ -40,6 +48,12 @@ public class ListItemService {
         return null;
     }
 
+    /**
+     * Updates a specific list item in the DB as a MEMBER or an OWNER.
+     * @param id {@link java.util.UUID} id
+     * @param dto {@link hu.unideb.cartshare.model.dto.request.UpdateListItemRequestDto} request DTO
+     * @return {@link hu.unideb.cartshare.model.dto.response.ListItemResponseDto} response DTO
+     */
     public ListItemResponseDto update(
             UUID id,
             UpdateListItemRequestDto dto) {
@@ -60,6 +74,10 @@ public class ListItemService {
         return null;
     }
 
+    /**
+     * Deletes a specific list item in the DB as a MEMBER or an OWNER.
+     * @param id {@link java.util.UUID} id
+     */
     public void delete(UUID id) {
         ListItem foundListItem = findById(id);
         hu.unideb.cartshare.model.entity.List foundList = listService.findByItem(foundListItem);
@@ -69,6 +87,11 @@ public class ListItemService {
         }
     }
 
+    /**
+     * Finds the list item in the DB by UUID.
+     * @param id {@link java.util.UUID} id
+     * @return {@link hu.unideb.cartshare.model.entity.ListItem} list item entity
+     */
     private ListItem findById(UUID id) {
         return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a listaelem nem létezik!"));
     }

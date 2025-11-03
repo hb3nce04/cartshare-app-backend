@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating a list.
+ */
 @Getter
 @Setter
 public class CreateListItemRequestDto {

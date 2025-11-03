@@ -10,6 +10,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Custom Spring Security {@link org.springframework.security.core.userdetails.UserDetails} interface implementation.
+ */
 @Getter
 @Builder
 @ToString

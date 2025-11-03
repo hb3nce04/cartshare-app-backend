@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for updating a specific list item.
+ */
 @Getter
 @Setter
 public class UpdateListItemRequestDto {

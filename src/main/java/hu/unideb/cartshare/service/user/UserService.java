@@ -1,4 +1,4 @@
-package hu.unideb.cartshare.service;
+package hu.unideb.cartshare.service.user;
 
 import java.util.UUID;
 
@@ -14,6 +14,9 @@ import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Handles user management business logic.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -21,6 +24,11 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper mapper;
 
+    /**
+     * Creates a new local user in the db.
+     * @param dto {@link UserRequestDto} request DTO
+     * @return {@link UserResponseDto} response DTO
+     */
     public UserResponseDto createLocalUser(UserRequestDto dto) {
         if (repository.existsByUsername(dto.getUsername())) {
             throw new BusinessLogicException("Ez a felhasználónév már foglalt!");
@@ -42,6 +50,13 @@ public class UserService {
         return mapper.toDto(user);
     }
 
+    /**
+     * Finds and creates (when it doesn't exist) a Google user in the db.
+     * @param email e-mail address
+     * @param username username
+     * @param googleId google profile ID
+     * @return {@link hu.unideb.cartshare.model.entity.User} user entity
+     */
     public User findOrCreateGoogleUser(String email, String username, String googleId) {
         return repository.findByEmail(email).orElseGet(
                 () -> {
@@ -55,6 +70,11 @@ public class UserService {
         );
     }
 
+    /**
+     * Finds the user in the DB by UUID.
+     * @param id {@link java.util.UUID} id
+     * @return {@link hu.unideb.cartshare.model.entity.User} user entity
+     */
     public User findById(UUID id) {
         return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Felhasználó nem található!"));
     }

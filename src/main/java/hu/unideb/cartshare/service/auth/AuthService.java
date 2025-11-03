@@ -17,10 +17,13 @@ import hu.unideb.cartshare.model.dto.request.RefreshTokenRequestDto;
 import hu.unideb.cartshare.model.dto.request.TraditionalLoginRequestDto;
 import hu.unideb.cartshare.model.dto.response.LoginResponseDto;
 import hu.unideb.cartshare.model.entity.User;
-import hu.unideb.cartshare.service.UserDetailsServiceImpl;
-import hu.unideb.cartshare.service.UserService;
+import hu.unideb.cartshare.service.user.UserDetailsServiceImpl;
+import hu.unideb.cartshare.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Handles traditional authentication logic.
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -30,6 +33,11 @@ public class AuthService {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtUtils jwtUtils;
 
+    /**
+     * Traditional user login method using {@link AuthenticationManager}, {@link hu.unideb.cartshare.model.UserDetailsImpl} and {@link hu.unideb.cartshare.component.JwtUtils}.
+     * @param dto {@link TraditionalLoginRequestDto} request DTO
+     * @return {@link LoginResponseDto} response DTO
+     */
     public LoginResponseDto login(TraditionalLoginRequestDto dto) {
         String username = dto.getUsername();
         String password = dto.getPassword();
@@ -45,6 +53,13 @@ public class AuthService {
         return LoginResponseDto.builder().accessToken(accessToken).refreshToken(refreshToken).build();
     }
 
+    /**
+     * Google OAuth2 login method using {@link GoogleAuthService}, {@link hu.unideb.cartshare.service.user.UserService} and {@link hu.unideb.cartshare.component.JwtUtils}.
+     * @param dto {@link hu.unideb.cartshare.model.dto.request.GoogleLoginRequestDto} request DTO
+     * @return {@link LoginResponseDto} response DTO
+     * @throws GeneralSecurityException N/A
+     * @throws IOException N/A
+     */
     public LoginResponseDto oauthGoogleLogin(GoogleLoginRequestDto dto) throws GeneralSecurityException, IOException {
         String token = dto.getToken();
 
@@ -62,6 +77,11 @@ public class AuthService {
         return LoginResponseDto.builder().accessToken(accessToken).refreshToken(refreshToken).build();
     }
 
+    /**
+     * Renews a newly signed access token based on the valid refresh token.
+     * @param dto {@link hu.unideb.cartshare.model.dto.request.RefreshTokenRequestDto} request DTO
+     * @return {@link LoginResponseDto} response DTO
+     */
     public LoginResponseDto refresh(RefreshTokenRequestDto dto) {
         String refreshToken = dto.getRefreshToken();
 

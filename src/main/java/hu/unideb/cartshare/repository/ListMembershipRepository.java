@@ -11,6 +11,9 @@ import hu.unideb.cartshare.model.enums.MembershipRole;
 import hu.unideb.cartshare.repository.common.BaseRepository;
 import jakarta.transaction.Transactional;
 
+/**
+ * Repository interface for {@link hu.unideb.cartshare.model.entity.ListMembership}.
+ */
 @Repository
 public interface ListMembershipRepository extends BaseRepository<ListMembership> {
     List<ListMembership> findAllByUser_IdAndRoleIs(

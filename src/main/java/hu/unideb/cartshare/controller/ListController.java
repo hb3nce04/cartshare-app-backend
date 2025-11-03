@@ -19,6 +19,18 @@ import hu.unideb.cartshare.model.dto.response.ListResponseDto;
 import hu.unideb.cartshare.service.ListService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Endpoints for managing lists and their business logic. It handles
+ * <ul>
+ *     <li>Getting the currently authenticated user's owned lists with their items</li>
+ *     <li>Getting the currently authenticated user's joined lists with their items</li>
+ *     <li>Creating a new list with an owner of the currently authenticated user</li>
+ *     <li>Joining to an existing list</li>
+ *     <li>Updating a currently authenticated user's joined list</li>
+ *     <li>Leaving from a currently authenticated user's joined list</li>
+ *     <li>Deleting a currently authenticated user's owned list</li>
+ *  </ul>
+ */
 @RestController
 @RequestMapping("/lists")
 @RequiredArgsConstructor

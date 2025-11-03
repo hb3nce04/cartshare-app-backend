@@ -18,6 +18,14 @@ import hu.unideb.cartshare.model.dto.response.ListItemResponseDto;
 import hu.unideb.cartshare.service.ListItemService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Endpoints for managing list items and their business logic. It handles
+ * <ul>
+ *     <li>Creating a new list item for the member of the currently authenticated user</li>
+ *     <li>Updating a list item for the member of the currently authenticated user</li>
+ *     <li>Deleting a list item for the member of the currently authenticated user</li>
+ *  </ul>
+ */
 @RestController
 @RequestMapping("/list-items")
 @RequiredArgsConstructor

@@ -14,6 +14,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 
+/**
+ * JWT utility class for handling access and refresh tokens.
+ */
 @Component
 public class JwtUtils {
     @Value("${jwt.access.secret}")

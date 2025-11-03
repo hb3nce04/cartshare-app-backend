@@ -4,6 +4,9 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for getting an access token with an existing refresh token.
+ */
 @Getter
 @Setter
 public class RefreshTokenRequestDto {

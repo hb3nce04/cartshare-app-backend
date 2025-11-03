@@ -1,4 +1,4 @@
-package hu.unideb.cartshare.service;
+package hu.unideb.cartshare.service.user;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -14,11 +14,20 @@ import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Custom Spring Security {@link org.springframework.security.core.userdetails.UserDetailsService} interface implementation.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
+    /**
+     * Querying users by username.
+     * @param username the user's username
+     * @return {@link UserDetails} interface
+     * @throws UsernameNotFoundException message: "Hibás felhasználónév vagy jelszó"
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> foundUser = userRepository.findByUsernameAndProvider(username, AuthProvider.LOCAL);
@@ -33,6 +42,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .build();
     }
 
+    /**
+     * Querying users by id.
+     * @param id the user's {@link java.util.UUID}
+     * @return {@link UserDetails} interface
+     * @throws UsernameNotFoundException message: "Hibás felhasználónév vagy jelszó"
+     */
     public UserDetails loadUserById(UUID id) throws UsernameNotFoundException {
         Optional<User> foundUser = userRepository.findById(id);
         if (foundUser.isEmpty()) {
