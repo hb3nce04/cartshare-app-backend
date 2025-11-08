@@ -1,6 +1,7 @@
 package hu.unideb.cartshare.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -54,6 +55,7 @@ public class ListService {
     public ListResponseDto create(ListRequestDto dto) {
         hu.unideb.cartshare.model.entity.List list = new hu.unideb.cartshare.model.entity.List();
         list.setName(dto.getName());
+        list.setItems(Set.of());
 
         repository.save(list);
         listMembershipService.join(list, MembershipRole.OWNER);
