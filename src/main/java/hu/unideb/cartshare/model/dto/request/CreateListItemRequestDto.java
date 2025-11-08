@@ -12,16 +12,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateListItemRequestDto {
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Elemnév megadása kötelező.")
     private String name;
 
-    @NotNull(message = "Kitöltése kötelező")
+    @NotNull(message = "Mennyiség megadása kötelező.")
     @Positive
     private Double quantity = 1.0;
 
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Mértékegység megadása kötelező.")
     private String unit;
 
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Lista megadása kötelező.")
     private String listId;
 }

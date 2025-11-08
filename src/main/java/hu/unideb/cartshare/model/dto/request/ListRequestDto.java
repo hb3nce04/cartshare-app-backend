@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ListRequestDto {
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Listanév megadása kötelező.")
     private String name;
 }
