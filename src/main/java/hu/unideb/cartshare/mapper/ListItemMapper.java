@@ -1,7 +1,5 @@
 package hu.unideb.cartshare.mapper;
 
-import java.util.Set;
-
 import org.mapstruct.Mapper;
 
 import hu.unideb.cartshare.model.dto.response.ListItemResponseDto;
