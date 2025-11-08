@@ -10,9 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TraditionalLoginRequestDto {
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Felhasználónév megadása kötelező.")
     private String username;
 
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Jelszó megadása kötelező.")
     private String password;
 }

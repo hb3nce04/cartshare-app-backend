@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GoogleLoginRequestDto {
-    @NotEmpty(message = "Kitöltése kötelező")
+    @NotEmpty(message = "Google token megadása kötelező.")
     private String token;
 }
