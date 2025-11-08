@@ -84,7 +84,11 @@ public class ListItemService {
     public Set<ListItemResponseDto> findItemsByListId(UUID id) {
         hu.unideb.cartshare.model.entity.List foundList = listService.findById(id);
 
-        return mapper.toDtoSet(foundList.getItems());
+        if (listMembershipService.hasAnyMembershipInList(foundList)) {
+            return mapper.toDtoSet(foundList.getItems());
+        }
+
+        return null;
     }
 
     /**
@@ -106,6 +110,6 @@ public class ListItemService {
      * @return {@link hu.unideb.cartshare.model.entity.ListItem} list item entity
      */
     private ListItem findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a listaelem nem létezik!"));
+        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a listaelem nem létezik."));
     }
 }
