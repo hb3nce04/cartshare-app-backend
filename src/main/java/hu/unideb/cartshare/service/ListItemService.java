@@ -1,5 +1,7 @@
 package hu.unideb.cartshare.service;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -72,6 +74,17 @@ public class ListItemService {
         }
 
         return null;
+    }
+
+    /**
+     * Retrieves all list items that belong to the list identified by the given id.
+     * @param id {@link java.util.UUID} id
+     * @return {@link List} of {@link hu.unideb.cartshare.model.dto.response.ListItemResponseDto}
+     */
+    public Set<ListItemResponseDto> findItemsByListId(UUID id) {
+        hu.unideb.cartshare.model.entity.List foundList = listService.findById(id);
+
+        return mapper.toDtoSet(foundList.getItems());
     }
 
     /**

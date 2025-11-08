@@ -1,6 +1,7 @@
 package hu.unideb.cartshare.controller;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hu.unideb.cartshare.model.dto.request.ListRequestDto;
+import hu.unideb.cartshare.model.dto.response.ListItemResponseDto;
 import hu.unideb.cartshare.model.dto.response.ListResponseDto;
+import hu.unideb.cartshare.service.ListItemService;
 import hu.unideb.cartshare.service.ListService;
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ListController {
     private final ListService service;
+    private final ListItemService listItemService;
 
     @GetMapping("/owned")
     public ResponseEntity<List<ListResponseDto>> findAllOwnedLists() {
@@ -58,8 +62,15 @@ public class ListController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ListResponseDto> update(@PathVariable @Validated UUID id, @RequestBody @Validated ListRequestDto dto) {
+    public ResponseEntity<ListResponseDto> update(
+            @PathVariable @Validated UUID id,
+            @RequestBody @Validated ListRequestDto dto) {
         return ResponseEntity.ok(service.update(id, dto));
+    }
+
+    @GetMapping("/{id}/items")
+    public ResponseEntity<Set<ListItemResponseDto>> findItemsByListId(@PathVariable @Validated UUID id) {
+        return ResponseEntity.ok(listItemService.findItemsByListId(id));
     }
 
     @DeleteMapping("/leave/{id}")
