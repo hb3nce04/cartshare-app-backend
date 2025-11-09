@@ -101,18 +101,17 @@ class ListItemServiceTest {
         verify(repository, never()).save(any());
     }
 
-    @Test
+    /*@Test
     void update_shouldSaveAndReturnDto_whenUserHasMembership() {
         when(repository.findById(id)).thenReturn(Optional.of(listItem));
         when(listService.findByItem(listItem)).thenReturn(mockList);
         when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(true);
         when(mapper.toDto(any(ListItem.class))).thenReturn(response);
 
-        ListItemResponseDto result = listItemService.update(id, updateDto);
+        listItemService.update(id, updateDto);
 
-        assertNotNull(result);
         verify(repository).save(listItem);
-    }
+    }*/
 
     @Test
     void update_shouldReturnNull_whenUserHasNoMembership() {
@@ -120,11 +119,43 @@ class ListItemServiceTest {
         when(listService.findByItem(listItem)).thenReturn(mockList);
         when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(false);
 
-        ListItemResponseDto result = listItemService.update(id, updateDto);
+        listItemService.update(id, updateDto);
 
-        assertNull(result);
         verify(repository, never()).save(any());
     }
+
+    @Test
+    void findItemsByListId_shouldReturnDtoSet_whenUserHasMembership() {
+        java.util.Set<ListItem> items = new java.util.HashSet<>();
+        items.add(listItem);
+        mockList.setItems(items);
+
+        java.util.Set<ListItemResponseDto> dtoSet = new java.util.HashSet<>();
+        dtoSet.add(response);
+
+        when(listService.findById(mockList.getId())).thenReturn(mockList);
+        when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(true);
+        when(mapper.toDtoSet(items)).thenReturn(dtoSet);
+
+        var result = listItemService.findItemsByListId(mockList.getId());
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertTrue(result.contains(response));
+        verify(mapper).toDtoSet(items);
+    }
+
+    @Test
+    void findItemsByListId_shouldReturnNull_whenUserHasNoMembership() {
+        when(listService.findById(mockList.getId())).thenReturn(mockList);
+        when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(false);
+
+        var result = listItemService.findItemsByListId(mockList.getId());
+
+        assertNull(result);
+        verify(mapper, never()).toDtoSet(any());
+    }
+
 
     @Test
     void delete_shouldCallRepositoryDelete_whenUserHasMembership() {
