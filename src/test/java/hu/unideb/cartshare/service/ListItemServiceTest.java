@@ -106,11 +106,9 @@ class ListItemServiceTest {
         when(repository.findById(id)).thenReturn(Optional.of(listItem));
         when(listService.findByItem(listItem)).thenReturn(mockList);
         when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(true);
-        when(mapper.toDto(any(ListItem.class))).thenReturn(response);
 
-        ListItemResponseDto result = listItemService.update(id, updateDto);
+        listItemService.update(id, updateDto);
 
-        assertNotNull(result);
         verify(repository).save(listItem);
     }
 
@@ -120,9 +118,8 @@ class ListItemServiceTest {
         when(listService.findByItem(listItem)).thenReturn(mockList);
         when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(false);
 
-        ListItemResponseDto result = listItemService.update(id, updateDto);
+        listItemService.update(id, updateDto);
 
-        assertNull(result);
         verify(repository, never()).save(any());
     }
 
