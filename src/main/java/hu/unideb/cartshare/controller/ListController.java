@@ -30,6 +30,7 @@ import lombok.RequiredArgsConstructor;
  *     <li>Creating a new list with an owner of the currently authenticated user</li>
  *     <li>Joining to an existing list</li>
  *     <li>Updating a currently authenticated user's joined list</li>
+ *     <li>Getting all the list items by the list id</li>
  *     <li>Leaving from a currently authenticated user's joined list</li>
  *     <li>Deleting a currently authenticated user's owned list</li>
  *  </ul>
@@ -62,10 +63,11 @@ public class ListController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ListResponseDto> update(
+    public ResponseEntity<Void> update(
             @PathVariable @Validated UUID id,
             @RequestBody @Validated ListRequestDto dto) {
-        return ResponseEntity.ok(service.update(id, dto));
+        service.update(id, dto);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}/items")
@@ -74,8 +76,9 @@ public class ListController {
     }
 
     @DeleteMapping("/leave/{id}")
-    public ResponseEntity<ListResponseDto> leaveById(@PathVariable @Validated UUID id) {
-        return ResponseEntity.ok(service.leaveById(id));
+    public ResponseEntity<Void> leaveById(@PathVariable @Validated UUID id) {
+        service.leaveById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

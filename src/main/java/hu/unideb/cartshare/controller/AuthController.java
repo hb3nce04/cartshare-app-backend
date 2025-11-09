@@ -57,7 +57,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserResponseDto> create(@RequestBody @Validated UserRequestDto dto) {
-        // TODO: /register -> req: UserRequestDto, res: LoginResponseDto
         return ResponseEntity.ok(userService.createLocalUser(dto));
     }
 }
