@@ -38,12 +38,15 @@ public class ListItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ListItemResponseDto> update(@PathVariable @Validated UUID id, @RequestBody @Validated UpdateListItemRequestDto dto) {
-        return ResponseEntity.ok(service.update(id, dto));
+    public ResponseEntity<Void> update(
+            @PathVariable @Validated UUID id,
+            @RequestBody @Validated UpdateListItemRequestDto dto) {
+        service.update(id, dto);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ListItemResponseDto> delete(@PathVariable @Validated UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable @Validated UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

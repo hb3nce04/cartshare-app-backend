@@ -81,7 +81,7 @@ public class ListService {
      * @param id {@link java.util.UUID} id
      * @param dto {@link ListRequestDto} request DTO
      */
-    public ListResponseDto update(
+    public void update(
             UUID id,
             ListRequestDto dto) {
         hu.unideb.cartshare.model.entity.List foundList = findById(id);
@@ -91,20 +91,16 @@ public class ListService {
 
             repository.save(foundList);
         }
-
-        return mapper.toDto(foundList);
     }
 
     /**
      * Deletes a specific entry from the DB. (ListMembership M:N table)
      * @param id {@link java.util.UUID} id
      */
-    public ListResponseDto leaveById(UUID id) {
+    public void leaveById(UUID id) {
         hu.unideb.cartshare.model.entity.List foundList = findById(id);
 
         listMembershipService.leave(foundList);
-
-        return mapper.toDto(foundList);
     }
 
     /**
