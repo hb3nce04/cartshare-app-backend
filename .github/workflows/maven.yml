@@ -25,7 +25,7 @@ jobs:
     - name: Build with Maven
       env:
         GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-      run: mvn -B package --file pom.xml -DskipTests
+      run: mvn -B package --file pom.xml
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
