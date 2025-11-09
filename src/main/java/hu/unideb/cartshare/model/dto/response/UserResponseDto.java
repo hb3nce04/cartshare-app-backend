@@ -1,12 +1,12 @@
 package hu.unideb.cartshare.model.dto.response;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponseDto {
     private String username;
     private String email;
