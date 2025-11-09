@@ -50,7 +50,6 @@ public class ListMembershipService {
             MembershipRole role) {
         if (hasNoMembershipInList(list)) {
             ListMembership membership = new ListMembership();
-            // TODO: joinedAt ?
             membership.setList(list);
             membership.setUser(userService.findById(getCurrentUserId()));
             membership.setRole(role);
@@ -116,8 +115,8 @@ public class ListMembershipService {
         if (!exists) {
             throw new BusinessLogicException(
                     requiredRole == null
-                            ? "Nem vagy bennne a listában!"
-                            : "Nem a " + (requiredRole == MembershipRole.OWNER ? "tulajdonosa" : "tagja") + " vagy a listának!"
+                            ? "Nem vagy bennne a listában."
+                            : "Nem a " + (requiredRole == MembershipRole.OWNER ? "tulajdonosa" : "tagja") + " vagy a listának."
             );
         }
 
@@ -134,7 +133,7 @@ public class ListMembershipService {
         boolean exists = repository.existsByListAndUserId(list, userId);
 
         if (exists) {
-            throw new BusinessLogicException("Már benne vagy a listában!");
+            throw new BusinessLogicException("Már benne vagy a listában.");
         }
 
         return true;
@@ -148,7 +147,7 @@ public class ListMembershipService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            throw new BusinessLogicException("Nem sikerült a felhasználó azonosítása!");
+            throw new BusinessLogicException("Nem sikerült a felhasználó azonosítása.");
         }
 
         UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();

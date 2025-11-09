@@ -125,7 +125,7 @@ public class ListService {
      * @return {@link hu.unideb.cartshare.model.entity.List} list entity
      */
     public hu.unideb.cartshare.model.entity.List findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a lista nem létezik!"));
+        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a lista nem létezik."));
     }
 
     /**
@@ -134,6 +134,6 @@ public class ListService {
      * @return {@link hu.unideb.cartshare.model.entity.List} list entity
      */
     public hu.unideb.cartshare.model.entity.List findByItem(ListItem item) {
-        return repository.findByItemsContaining(item).orElseThrow(() -> new BusinessLogicException("Ehhez az elemhez nem tartozik lista!"));
+        return repository.findByItemsContaining(item).orElseThrow(() -> new BusinessLogicException("Ehhez az elemhez nem tartozik lista."));
     }
 }
