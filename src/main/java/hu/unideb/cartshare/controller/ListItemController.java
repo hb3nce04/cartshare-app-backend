@@ -38,11 +38,10 @@ public class ListItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(
+    public ResponseEntity<ListItemResponseDto> update(
             @PathVariable @Validated UUID id,
             @RequestBody @Validated UpdateListItemRequestDto dto) {
-        service.update(id, dto);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

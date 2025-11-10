@@ -54,8 +54,9 @@ public class ListItemService {
      * Updates a specific list item in the DB as a MEMBER or an OWNER.
      * @param id {@link java.util.UUID} id
      * @param dto {@link hu.unideb.cartshare.model.dto.request.UpdateListItemRequestDto} request DTO
+     * @return {@link hu.unideb.cartshare.model.dto.response.ListItemResponseDto} response DTO
      */
-    public void update(
+    public ListItemResponseDto update(
             UUID id,
             UpdateListItemRequestDto dto) {
         ListItem foundListItem = findById(id);
@@ -68,7 +69,11 @@ public class ListItemService {
             foundListItem.setIsChecked(dto.getIsChecked());
 
             repository.save(foundListItem);
+
+            return mapper.toDto(foundListItem);
         }
+
+        return null;
     }
 
     /**
