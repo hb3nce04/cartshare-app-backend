@@ -63,11 +63,10 @@ public class ListController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> update(
+    public ResponseEntity<ListResponseDto> update(
             @PathVariable @Validated UUID id,
             @RequestBody @Validated ListRequestDto dto) {
-        service.update(id, dto);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @GetMapping("/{id}/items")

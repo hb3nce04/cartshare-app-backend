@@ -80,8 +80,9 @@ public class ListService {
      * Updates a specific list from the DB as an OWNER.
      * @param id {@link java.util.UUID} id
      * @param dto {@link ListRequestDto} request DTO
+     * @return {@link ListResponseDto} response DTO
      */
-    public void update(
+    public ListResponseDto update(
             UUID id,
             ListRequestDto dto) {
         hu.unideb.cartshare.model.entity.List foundList = findById(id);
@@ -90,7 +91,11 @@ public class ListService {
             foundList.setName(dto.getName());
 
             repository.save(foundList);
+
+            return mapper.toDto(foundList);
         }
+
+        return null;
     }
 
     /**
