@@ -7,6 +7,8 @@ import hu.unideb.cartshare.model.dto.response.UserResponseDto;
 import hu.unideb.cartshare.model.entity.User;
 import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.UserRepository;
+import hu.unideb.cartshare.service.user.UserService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -106,7 +106,6 @@ class ListItemServiceTest {
         when(repository.findById(id)).thenReturn(Optional.of(listItem));
         when(listService.findByItem(listItem)).thenReturn(mockList);
         when(listMembershipService.hasAnyMembershipInList(mockList)).thenReturn(true);
-        when(mapper.toDto(any(ListItem.class))).thenReturn(response);
 
         listItemService.update(id, updateDto);
 
