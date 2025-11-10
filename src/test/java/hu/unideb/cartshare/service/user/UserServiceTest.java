@@ -1,4 +1,4 @@
-package hu.unideb.cartshare.service;
+package hu.unideb.cartshare.service.user;
 
 import hu.unideb.cartshare.exception.BusinessLogicException;
 import hu.unideb.cartshare.mapper.UserMapper;
@@ -7,7 +7,6 @@ import hu.unideb.cartshare.model.dto.response.UserResponseDto;
 import hu.unideb.cartshare.model.entity.User;
 import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.UserRepository;
-import hu.unideb.cartshare.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

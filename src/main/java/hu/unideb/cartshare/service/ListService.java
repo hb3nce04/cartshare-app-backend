@@ -77,7 +77,7 @@ public class ListService {
     }
 
     /**
-     * Updates a specific list from the DB as a MEMBER.
+     * Updates a specific list from the DB as an OWNER.
      * @param id {@link java.util.UUID} id
      * @param dto {@link ListRequestDto} request DTO
      */
@@ -104,7 +104,7 @@ public class ListService {
     }
 
     /**
-     * Deletes a specific list from the DB as a MEMBER.
+     * Deletes a specific list from the DB as an OWNER.
      * @param id {@link java.util.UUID} id
      */
     public void delete(UUID id) {
