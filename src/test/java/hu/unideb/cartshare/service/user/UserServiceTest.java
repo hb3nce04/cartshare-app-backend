@@ -63,16 +63,14 @@ class UserServiceTest {
 
     @Test
     void shouldCreateLocalUserSuccessfully() {
-        // given
+
         when(repository.existsByUsername(dto.getUsername())).thenReturn(false);
         when(repository.existsByEmail(dto.getEmail())).thenReturn(false);
         when(passwordEncoder.encode(dto.getPassword())).thenReturn("encoded-secret");
         when(mapper.toDto(any(User.class))).thenReturn(response);
 
-        // when
         UserResponseDto result = userService.createLocalUser(dto);
 
-        // then
         assertNotNull(result);
         assertEquals(dto.getUsername(), result.getUsername());
         verify(repository).save(any(User.class));
@@ -126,13 +124,11 @@ class UserServiceTest {
 
     @Test
     void shouldReturnUserWhenIdExists() {
-        // given
+
         when(repository.findById(id)).thenReturn(Optional.of(user));
 
-        // when
         User result = userService.findById(id);
 
-        // then
         assertNotNull(result);
         assertEquals(id, result.getId());
         verify(repository).findById(id);
