@@ -13,10 +13,9 @@ Designed like a to-do app, but optimized for shopping — **invite friends or fa
 
 - 🧾 **Create and manage shopping lists** — add, edit, or delete items with ease  
 - 👥 **Collaborate in real time** — share lists with friends or family  
-- 🔄 **Instant updates** — changes reflect immediately across all connected users  
-- 🔐 **User authentication** — secure sign-up and login system  
+- 🔄 **Instant updates** — changes reflect across all connected users  
+- 🔐 **User authentication with Google** — secure sign-up and login system  
 - 📱 **API-first architecture** — ready for integration with web or mobile clients  
-- 📊 **Activity tracking** — view recent edits and who made them  
 
 ---
 
@@ -35,3 +34,21 @@ Designed like a to-do app, but optimized for shopping — **invite friends or fa
 | Testing | **Junit**, **Mockito** |
 | API Documentation | **Swagger** |
 | Deployment | **Docker, Docker Compose, Render** |
+
+---
+
+## 🧰 Developer Environment Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/hb3nce04/cartshare-app-backend
+   cd cartshare-app-backend
+
+2. **Add environment variables into docker.compose.yml**
+    ```yaml
+        environment:
+          - GOOGLE_CLIENT_ID=your-google-client-id
+
+3. **Run**
+    ```bash
+    docker compose up
