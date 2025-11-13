@@ -37,7 +37,7 @@ Designed like a to-do app, but optimized for shopping — **invite friends or fa
 
 ---
 
-## 🧰 Developer Environment Installation
+## 🧰 Installation
 
 1. **Clone the repository**
    ```bash
