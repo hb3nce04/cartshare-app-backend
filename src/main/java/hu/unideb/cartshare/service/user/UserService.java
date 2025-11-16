@@ -1,10 +1,5 @@
 package hu.unideb.cartshare.service.user;
 
-import java.util.UUID;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import hu.unideb.cartshare.exception.BusinessLogicException;
 import hu.unideb.cartshare.mapper.UserMapper;
 import hu.unideb.cartshare.model.dto.request.UserRequestDto;
@@ -13,6 +8,10 @@ import hu.unideb.cartshare.model.entity.User;
 import hu.unideb.cartshare.model.enums.AuthProvider;
 import hu.unideb.cartshare.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 /**
  * Handles user management business logic.
@@ -26,12 +25,14 @@ public class UserService {
 
     /**
      * Creates a new local user in the db.
+     *
      * @param dto {@link UserRequestDto} request DTO
      * @return {@link UserResponseDto} response DTO
      */
-    public UserResponseDto createLocalUser(UserRequestDto dto) {
+    public UserResponseDto createLocalUser(final UserRequestDto dto) {
         if (repository.existsByUsername(dto.getUsername())) {
-            throw new BusinessLogicException("Ez a felhasználónév már foglalt.");
+            throw new BusinessLogicException(
+                    "Ez a felhasználónév már foglalt.");
         }
         if (repository.existsByEmail(dto.getEmail())) {
             throw new BusinessLogicException("Ez az e-mail cím már foglalt.");
@@ -52,12 +53,14 @@ public class UserService {
 
     /**
      * Finds and creates (when it doesn't exist) a Google user in the db.
-     * @param email e-mail address
+     *
+     * @param email    e-mail address
      * @param username username
      * @param googleId google profile ID
      * @return {@link hu.unideb.cartshare.model.entity.User} user entity
      */
-    public User findOrCreateGoogleUser(String email, String username, String googleId) {
+    public User findOrCreateGoogleUser(final String email, final String username,
+                                       final String googleId) {
         return repository.findByEmail(email).orElseGet(
                 () -> {
                     User newUser = new User();
@@ -72,10 +75,13 @@ public class UserService {
 
     /**
      * Finds the user in the DB by UUID.
+     *
      * @param id {@link java.util.UUID} id
      * @return {@link hu.unideb.cartshare.model.entity.User} user entity
      */
-    public User findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Felhasználó nem található."));
+    public User findById(final UUID id) {
+        return repository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException(
+                        "Felhasználó nem található."));
     }
 }
