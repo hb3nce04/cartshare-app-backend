@@ -1,9 +1,11 @@
 package hu.unideb.cartshare.controller;
 
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
+import hu.unideb.cartshare.model.dto.request.ListRequestDto;
+import hu.unideb.cartshare.model.dto.response.ListItemResponseDto;
+import hu.unideb.cartshare.model.dto.response.ListResponseDto;
+import hu.unideb.cartshare.service.ListItemService;
+import hu.unideb.cartshare.service.ListService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,19 +17,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hu.unideb.cartshare.model.dto.request.ListRequestDto;
-import hu.unideb.cartshare.model.dto.response.ListItemResponseDto;
-import hu.unideb.cartshare.model.dto.response.ListResponseDto;
-import hu.unideb.cartshare.service.ListItemService;
-import hu.unideb.cartshare.service.ListService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Endpoints for managing lists and their business logic. It handles
  * <ul>
- *     <li>Getting the currently authenticated user's owned lists with their items</li>
- *     <li>Getting the currently authenticated user's joined lists with their items</li>
- *     <li>Creating a new list with an owner of the currently authenticated user</li>
+ *     <li>Getting the currently authenticated user's owned lists
+ *         with their items</li>
+ *     <li>Getting the currently authenticated user's joined lists
+ *         with their items</li>
+ *     <li>Creating a new list with an owner of the currently
+ *         authenticated user</li>
  *     <li>Joining to an existing list</li>
  *     <li>Updating a currently authenticated user's joined list</li>
  *     <li>Getting all the list items by the list id</li>
@@ -39,7 +41,14 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/lists")
 @RequiredArgsConstructor
 public class ListController {
+    /**
+     * Service for list management operations.
+     */
     private final ListService service;
+
+    /**
+     * Service for list item management operations.
+     */
     private final ListItemService listItemService;
 
     @GetMapping("/owned")
@@ -53,12 +62,14 @@ public class ListController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<ListResponseDto> create(@RequestBody @Validated ListRequestDto dto) {
+    public ResponseEntity<ListResponseDto> create(
+            @RequestBody @Validated ListRequestDto dto) {
         return ResponseEntity.ok(service.create(dto));
     }
 
     @PostMapping("/join/{id}")
-    public ResponseEntity<ListResponseDto> joinById(@PathVariable @Validated UUID id) {
+    public ResponseEntity<ListResponseDto> joinById(
+            @PathVariable @Validated UUID id) {
         return ResponseEntity.ok(service.joinById(id));
     }
 
@@ -71,7 +82,8 @@ public class ListController {
     }
 
     @GetMapping("/{id}/items")
-    public ResponseEntity<Set<ListItemResponseDto>> findItemsByListId(@PathVariable @Validated UUID id) {
+    public ResponseEntity<Set<ListItemResponseDto>> findItemsByListId(
+            @PathVariable @Validated UUID id) {
         return ResponseEntity.ok(listItemService.findItemsByListId(id));
     }
 

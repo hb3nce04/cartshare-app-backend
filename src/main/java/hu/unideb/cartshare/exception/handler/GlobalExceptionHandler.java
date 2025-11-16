@@ -1,8 +1,8 @@
 package hu.unideb.cartshare.exception.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import hu.unideb.cartshare.exception.BusinessLogicException;
+import hu.unideb.cartshare.exception.EntityNotFoundException;
+import hu.unideb.cartshare.model.dto.response.ApiErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -11,9 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import hu.unideb.cartshare.exception.BusinessLogicException;
-import hu.unideb.cartshare.model.dto.response.ApiErrorResponseDto;
-import hu.unideb.cartshare.exception.EntityNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * It centralizes the error handling logic with unified error responses.
@@ -21,7 +20,8 @@ import hu.unideb.cartshare.exception.EntityNotFoundException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exc) {
+    public ResponseEntity<Map<String, String>>
+    handleMethodArgumentNotValidException(MethodArgumentNotValidException exc) {
         Map<String, String> errors = new HashMap<>();
         exc.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -32,17 +32,26 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ApiErrorResponseDto> handleEntityNotFoundException(EntityNotFoundException exc) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiErrorResponseDto.builder().message(exc.getMessage()).build());
+    public ResponseEntity<ApiErrorResponseDto> handleEntityNotFoundException(
+            EntityNotFoundException exc) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiErrorResponseDto.builder().message(exc.getMessage())
+                        .build());
     }
 
     @ExceptionHandler(BusinessLogicException.class)
-    public ResponseEntity<ApiErrorResponseDto> handleBusinessLogicException(BusinessLogicException exc) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiErrorResponseDto.builder().message(exc.getMessage()).build());
+    public ResponseEntity<ApiErrorResponseDto> handleBusinessLogicException(
+            BusinessLogicException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiErrorResponseDto.builder().message(exc.getMessage())
+                        .build());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ApiErrorResponseDto> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exc) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiErrorResponseDto.builder().message("Az adott kérés nem támogatott!").build());
+    public ResponseEntity<ApiErrorResponseDto>
+    handleHttpRequestMethodNotSupportedException() {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiErrorResponseDto.builder()
+                        .message("Az adott kérés nem támogatott!").build());
     }
 }

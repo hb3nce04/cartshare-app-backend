@@ -1,18 +1,17 @@
 package hu.unideb.cartshare.service.auth;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.util.Collections;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import hu.unideb.cartshare.exception.BusinessLogicException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
 
 /**
  * Handles Google OAuth2 authentication logic. (Token verification)
@@ -25,12 +24,14 @@ public class GoogleAuthService {
 
     /**
      * Verifies the Google-based / signed token.
+     *
      * @param token token from Google
      * @return {@link GoogleIdToken.Payload} payload
      * @throws GeneralSecurityException N/A
-     * @throws IOException N/A
+     * @throws IOException              N/A
      */
-    public GoogleIdToken.Payload verifyToken(String token) throws GeneralSecurityException, IOException {
+    public GoogleIdToken.Payload verifyToken(final String token)
+            throws GeneralSecurityException, IOException {
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                 new NetHttpTransport(),
                 new GsonFactory())
