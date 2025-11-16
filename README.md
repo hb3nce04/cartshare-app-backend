@@ -11,11 +11,11 @@ Designed like a to-do app, but optimized for shopping — **invite friends or fa
 
 ## 🚀 Functionality
 
-- 🧾 **Create and manage shopping lists** — add, edit, or delete items with ease  
-- 👥 **Collaborate in real time** — share lists with friends or family  
-- 🔄 **Instant updates** — changes reflect across all connected users  
-- 🔐 **User authentication with Google** — secure sign-up and login system  
-- 📱 **API-first architecture** — ready for integration with web or mobile clients  
+- 🧾 **Create and manage shopping lists** — add, edit, or delete items with ease
+- 👥 **Collaborate in real time** — share lists with friends or family
+- 🔄 **Instant updates** — changes reflect across all connected users
+- 🔐 **User authentication with Google** — secure sign-up and login system
+- 📱 **API-first architecture** — ready for integration with web or mobile clients
 
 ---
 
@@ -31,9 +31,10 @@ Designed like a to-do app, but optimized for shopping — **invite friends or fa
 | Backend Framework | **Spring Boot, Spring ecosystem** |
 | Database | **H2, PostgreSQL** |
 | Authentication | **JWT (JSON Web Tokens), Google OAuth 2**
-| Testing | **Junit**, **Mockito** |
+| Testing (unit, integration) | **Junit**, **Mockito** |
 | API Documentation | **Swagger** |
 | Deployment | **Docker, Docker Compose, Render** |
+| CI/CD | **Maven, GitHub Actions -> Docker Hub** |
 
 ---
 
