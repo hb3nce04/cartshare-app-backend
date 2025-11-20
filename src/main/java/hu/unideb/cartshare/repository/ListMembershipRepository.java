@@ -1,21 +1,21 @@
 package hu.unideb.cartshare.repository;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.stereotype.Repository;
-
 import hu.unideb.cartshare.model.entity.ListMembership;
 import hu.unideb.cartshare.model.enums.MembershipRole;
 import hu.unideb.cartshare.repository.common.BaseRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Repository interface for {@link hu.unideb.cartshare.model.entity.ListMembership}.
  */
 @Repository
-public interface ListMembershipRepository extends BaseRepository<ListMembership> {
+public interface ListMembershipRepository
+        extends BaseRepository<ListMembership> {
     List<ListMembership> findAllByUser_IdAndRoleIs(
             UUID userId,
             MembershipRole role);
