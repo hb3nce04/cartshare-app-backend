@@ -31,7 +31,7 @@ Designed like a to-do app, but optimized for shopping — **invite friends or fa
 | Backend Framework | **Spring Boot, Spring ecosystem** |
 | Database | **H2, PostgreSQL** |
 | Authentication | **JWT (JSON Web Tokens), Google OAuth 2**
-| Testing (unit, integration) | **Junit**, **Mockito**, JaCoCo |
+| Testing (unit, integration) | **Junit**, **Mockito**, **JaCoCo** |
 | API Documentation | **Swagger** |
 | Deployment | **Docker, Docker Compose, Render** |
 | CI/CD | **Maven, GitHub Actions -> Docker Hub** |
