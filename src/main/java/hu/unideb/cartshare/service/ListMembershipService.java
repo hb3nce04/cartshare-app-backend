@@ -147,7 +147,7 @@ public class ListMembershipService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            throw new BusinessLogicException("Error occured during the user authentication. Please try again.");
+            throw new BusinessLogicException("Error occurred during the user authentication. Please try again.");
         }
 
         UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();
