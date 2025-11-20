@@ -31,11 +31,10 @@ public class UserService {
      */
     public UserResponseDto createLocalUser(final UserRequestDto dto) {
         if (repository.existsByUsername(dto.getUsername())) {
-            throw new BusinessLogicException(
-                    "Ez a felhasználónév már foglalt.");
+            throw new BusinessLogicException("This username is already taken.");
         }
         if (repository.existsByEmail(dto.getEmail())) {
-            throw new BusinessLogicException("Ez az e-mail cím már foglalt.");
+            throw new BusinessLogicException("This e-mail address is already taken.");
         }
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
@@ -79,9 +78,7 @@ public class UserService {
      * @param id {@link java.util.UUID} id
      * @return {@link hu.unideb.cartshare.model.entity.User} user entity
      */
-    public User findById(final UUID id) {
-        return repository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException(
-                        "Felhasználó nem található."));
+    public User findById(UUID id) {
+        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not exists."));
     }
 }

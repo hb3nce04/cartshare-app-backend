@@ -43,7 +43,7 @@ public class GoogleAuthService {
         if (idToken != null) {
             return idToken.getPayload();
         } else {
-            throw new BusinessLogicException("Hibás Google ID token.");
+            throw new BusinessLogicException("Invalid Google token.");
         }
     }
 }

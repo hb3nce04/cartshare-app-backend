@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RefreshTokenRequestDto {
-    @NotEmpty(message = "Token megadása kötelező.")
+    @NotEmpty(message = "You must give token")
     private String refreshToken;
 }

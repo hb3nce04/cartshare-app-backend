@@ -67,7 +67,7 @@ class GoogleAuthServiceTest {
             BusinessLogicException ex = assertThrows(BusinessLogicException.class,
                     () -> googleAuthService.verifyToken("invalid-token"));
 
-            assertEquals("Hibás Google ID token.", ex.getMessage());
+            assertEquals("Invalid Google token.", ex.getMessage());
         }
     }
 

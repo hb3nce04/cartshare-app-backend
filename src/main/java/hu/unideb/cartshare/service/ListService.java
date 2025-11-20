@@ -130,9 +130,8 @@ public class ListService {
      * @param id {@link java.util.UUID} id
      * @return {@link hu.unideb.cartshare.model.entity.List} list entity
      */
-    public hu.unideb.cartshare.model.entity.List findById(final UUID id) {
-        return repository.findById(id).orElseThrow(
-                () -> new BusinessLogicException("Ez a lista nem létezik."));
+    public hu.unideb.cartshare.model.entity.List findById(UUID id) {
+        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("This list is already exists."));
     }
 
     /**
@@ -141,9 +140,7 @@ public class ListService {
      * @param item {@link ListItem} list item
      * @return {@link hu.unideb.cartshare.model.entity.List} list entity
      */
-    public hu.unideb.cartshare.model.entity.List findByItem(final ListItem item) {
-        return repository.findByItemsContaining(item).orElseThrow(
-                () -> new BusinessLogicException(
-                        "Ehhez az elemhez nem tartozik lista."));
+    public hu.unideb.cartshare.model.entity.List findByItem(ListItem item) {
+        return repository.findByItemsContaining(item).orElseThrow(() -> new BusinessLogicException("This list item is not in any list."));
     }
 }

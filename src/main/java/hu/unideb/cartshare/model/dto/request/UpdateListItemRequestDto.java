@@ -12,16 +12,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateListItemRequestDto {
-    @NotEmpty(message = "Elemnév megadása kötelező.")
+    @NotEmpty(message = "You must give name")
     private String name;
 
-    @NotNull(message = "Mennyiség megadása kötelező.")
-    @Positive(message = "Helytelen mennyiség. (>0!)")
+    @NotNull(message = "You must give quantity")
+    @Positive(message = "Invalid quantity (>0!)")
     private Double quantity = 1.0;
 
-    @NotEmpty(message = "Mértékegység megadása kötelező.")
+    @NotEmpty(message = "You must give unit")
     private String unit;
 
-    @NotNull(message = "Állapot megadása kötelező.")
+    @NotNull(message = "You must give state")
     private Boolean isChecked = false;
 }

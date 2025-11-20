@@ -61,7 +61,7 @@ class UserDetailsServiceImplTest {
         UsernameNotFoundException ex = assertThrows(UsernameNotFoundException.class,
                 () -> userDetailsService.loadUserByUsername("tester"));
 
-        assertEquals("Hibás felhasználónév vagy jelszó.", ex.getMessage());
+        assertEquals("Invalid credentials.", ex.getMessage());
     }
 
     @Test
@@ -83,6 +83,6 @@ class UserDetailsServiceImplTest {
         UsernameNotFoundException ex = assertThrows(UsernameNotFoundException.class,
                 () -> userDetailsService.loadUserById(id));
 
-        assertEquals("Hibás azonosító.", ex.getMessage());
+        assertEquals("Invalid id.", ex.getMessage());
     }
 }
