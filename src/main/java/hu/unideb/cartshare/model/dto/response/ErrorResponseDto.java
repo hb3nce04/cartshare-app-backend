@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ApiErrorResponseDto {
+public class ErrorResponseDto {
+    private String title;
     private String message;
 }

@@ -31,10 +31,10 @@ public class UserService {
      */
     public UserResponseDto createLocalUser(UserRequestDto dto) {
         if (repository.existsByUsername(dto.getUsername())) {
-            throw new BusinessLogicException("Ez a felhasználónév már foglalt.");
+            throw new BusinessLogicException("This username is already taken.");
         }
         if (repository.existsByEmail(dto.getEmail())) {
-            throw new BusinessLogicException("Ez az e-mail cím már foglalt.");
+            throw new BusinessLogicException("This e-mail address is already taken.");
         }
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());

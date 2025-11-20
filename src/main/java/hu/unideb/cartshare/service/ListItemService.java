@@ -105,6 +105,6 @@ public class ListItemService {
      * @return {@link hu.unideb.cartshare.model.entity.ListItem} list item entity
      */
     private ListItem findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("Ez a listaelem nem létezik."));
+        return repository.findById(id).orElseThrow(() -> new BusinessLogicException("This list item is already exists."));
     }
 }

@@ -107,7 +107,7 @@ class ListMembershipServiceTest {
         BusinessLogicException ex = assertThrows(BusinessLogicException.class,
                 () -> service.join(list, MembershipRole.MEMBER));
 
-        assertEquals("Már benne vagy a listában.", ex.getMessage());
+        assertEquals("You already in the list.", ex.getMessage());
         verify(repository, never()).save(any());
     }
 
@@ -144,7 +144,7 @@ class ListMembershipServiceTest {
                 .thenReturn(false);
 
         BusinessLogicException ex = assertThrows(BusinessLogicException.class, () -> service.isMember(list));
-        assertEquals("Nem a tagja vagy a listának.", ex.getMessage());
+        assertEquals("You are not the member of this list.", ex.getMessage());
     }
 
     @Test
@@ -161,7 +161,7 @@ class ListMembershipServiceTest {
                 .thenReturn(false);
 
         BusinessLogicException ex = assertThrows(BusinessLogicException.class, () -> service.isOwner(list));
-        assertEquals("Nem a tulajdonosa vagy a listának.", ex.getMessage());
+        assertEquals("You are not the owner of this list.", ex.getMessage());
     }
 
     @Test
@@ -176,7 +176,7 @@ class ListMembershipServiceTest {
         when(repository.existsByListAndUserId(list, userId)).thenReturn(false);
 
         BusinessLogicException ex = assertThrows(BusinessLogicException.class, () -> service.hasAnyMembershipInList(list));
-        assertEquals("Nem vagy bennne a listában.", ex.getMessage());
+        assertEquals("You are not in the list.", ex.getMessage());
     }
 
     /*@Test

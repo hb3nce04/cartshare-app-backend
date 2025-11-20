@@ -115,8 +115,8 @@ public class ListMembershipService {
         if (!exists) {
             throw new BusinessLogicException(
                     requiredRole == null
-                            ? "Nem vagy bennne a listában."
-                            : "Nem a " + (requiredRole == MembershipRole.OWNER ? "tulajdonosa" : "tagja") + " vagy a listának."
+                            ? "You are not in the list."
+                            : "You are not the " + (requiredRole == MembershipRole.OWNER ? "owner" : "member") + " of this list."
             );
         }
 
@@ -133,7 +133,7 @@ public class ListMembershipService {
         boolean exists = repository.existsByListAndUserId(list, userId);
 
         if (exists) {
-            throw new BusinessLogicException("Már benne vagy a listában.");
+            throw new BusinessLogicException("You already in the list.");
         }
 
         return true;
@@ -147,7 +147,7 @@ public class ListMembershipService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            throw new BusinessLogicException("Nem sikerült a felhasználó azonosítása.");
+            throw new BusinessLogicException("Error occured during the user authentication. Please try again.");
         }
 
         UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();

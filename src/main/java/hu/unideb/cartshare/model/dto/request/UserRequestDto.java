@@ -11,14 +11,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRequestDto {
-    @NotEmpty(message = "Felhasználónév megadása kötelező.")
+    @NotEmpty(message = "You must give username")
     private String username;
 
-    @NotEmpty(message = "E-mail cím megadása kötelező.")
-    @Pattern(regexp = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}", message = "Helytelen e-mail cím formátum.")
+    @NotEmpty(message = "You must give e-mail address")
+    @Pattern(regexp = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}", message = "Invalid e-mail address format")
     private String email;
 
-    @NotEmpty(message = "Jelszó megadása kötelező.")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Helytelen jelszó formátum.")
+    @NotEmpty(message = "You must give password")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Invalid password format")
     private String password;
 }
