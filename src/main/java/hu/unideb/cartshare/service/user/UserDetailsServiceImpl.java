@@ -26,13 +26,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * Querying users by username.
      * @param username the user's username
      * @return {@link UserDetails} interface
-     * @throws UsernameNotFoundException message: "Hibás felhasználónév vagy jelszó."
+     * @throws UsernameNotFoundException message: "Invalid credentials."
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> foundUser = userRepository.findByUsernameAndProvider(username, AuthProvider.LOCAL);
         if (foundUser.isEmpty()) {
-            throw new UsernameNotFoundException("Hibás felhasználónév vagy jelszó.");
+            throw new UsernameNotFoundException("Invalid credentials.");
         }
         return UserDetailsImpl
                 .builder()
@@ -46,12 +46,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * Querying users by id.
      * @param id the user's {@link java.util.UUID}
      * @return {@link UserDetails} interface
-     * @throws UsernameNotFoundException message: "Hibás azonosító."
+     * @throws UsernameNotFoundException message: "Invalid id."
      */
     public UserDetails loadUserById(UUID id) throws UsernameNotFoundException {
         Optional<User> foundUser = userRepository.findById(id);
         if (foundUser.isEmpty()) {
-            throw new UsernameNotFoundException("Hibás azonosító.");
+            throw new UsernameNotFoundException("Invalid id.");
         }
         return UserDetailsImpl
                 .builder()

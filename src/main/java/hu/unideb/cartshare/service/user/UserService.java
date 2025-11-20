@@ -76,6 +76,6 @@ public class UserService {
      * @return {@link hu.unideb.cartshare.model.entity.User} user entity
      */
     public User findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Felhasználó nem található."));
+        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not exists."));
     }
 }
