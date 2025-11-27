@@ -5,6 +5,7 @@ import hu.unideb.cartshare.exception.EntityNotFoundException;
 import hu.unideb.cartshare.model.dto.response.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,16 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponseDto> handleBadCredentialsException() {
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
+                .title("Wrong credentials")
+                .message("Bad username or password.")
+                .build();
+        return new ResponseEntity<>(errorResponseDto, status);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponseDto> handleMethodArgumentNotValidException(MethodArgumentNotValidException exc) {
         AtomicReference<String> content = new AtomicReference<>("");
