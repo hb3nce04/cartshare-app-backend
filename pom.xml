@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>hu.unideb</groupId>
 	<artifactId>cartshare</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>cartshare</name>
 	<description>Backend API for cartshare-app.</description>
 	<url/>
