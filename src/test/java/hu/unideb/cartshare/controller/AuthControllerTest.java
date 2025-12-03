@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.security.GeneralSecurityException;
 
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -182,13 +183,11 @@ class AuthControllerTest {
         when(authService.oauthGoogleLogin(any(GoogleLoginRequestDto.class)))
                 .thenThrow(new GeneralSecurityException("Google token invalid."));
 
-        Exception exception = assertThrows(ServletException.class, () -> {
-            mockMvc.perform(post("/auth/oauth/google")
-                    .with(csrf())
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(googleDto)));
-        });
+        Exception exception = assertThrows(ServletException.class, () -> mockMvc.perform(post("/auth/oauth/google")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(googleDto))));
 
-        assertTrue(exception.getCause() instanceof GeneralSecurityException);
+        assertInstanceOf(GeneralSecurityException.class, exception.getCause());
     }
 }
